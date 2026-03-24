@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listen and Choose a Response — 解答解説</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fa;color:#2d3748;line-height:1.8}
+.header{background:linear-gradient(135deg,#2d3748,#4a5568);color:#fff;padding:28px 24px;text-align:center}
+.header h1{font-size:1.5em;margin-bottom:4px}
+.header p{font-size:.85em;opacity:.8}
+
+/* Score summary */
+.score-summary{max-width:880px;margin:24px auto;background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.06);padding:24px;text-align:center}
+.score-big{font-size:2.8em;font-weight:700;color:#4a90d9;margin:8px 0}
+.score-sub{font-size:.85em;color:#718096}
+.score-bar{height:8px;background:#e2e8f0;border-radius:4px;margin:16px auto;max-width:300px}
+.score-bar-fill{height:100%;background:#4a90d9;border-radius:4px;transition:width .5s}
+
+/* Tips */
+.tips-banner{background:#fff;border-left:4px solid #4a90d9;margin:20px auto;max-width:880px;padding:20px 24px;border-radius:0 8px 8px 0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.tips-banner h2{font-size:1em;color:#4a90d9;margin-bottom:14px}
+.tips-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.tips-grid{grid-template-columns:1fr 1fr}}
+.tip-card{background:#ebf4ff;border-radius:8px;padding:14px;text-align:center}
+.tip-num{display:inline-block;background:#4a90d9;color:#fff;width:28px;height:28px;line-height:28px;border-radius:50%;font-size:.8em;font-weight:700;margin-bottom:6px}
+.tip-card h3{font-size:.85em;margin-bottom:4px}
+.tip-card p{font-size:.75em;color:#4a5568}
+
+/* Question cards */
+.q-section{max-width:880px;margin:20px auto}
+.q-card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px;overflow:hidden}
+.q-header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid #edf2f7}
+.q-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85em;color:#fff;flex-shrink:0}
+.q-num.correct{background:#38a169}
+.q-num.wrong{background:#e53e3e}
+.q-num.skip{background:#a0aec0}
+.q-prompt{font-size:.92em;font-weight:600;flex:1}
+.q-badge{font-size:.72em;padding:3px 10px;border-radius:12px;font-weight:600}
+.q-badge.detail{background:#ebf8ff;color:#2b6cb0}
+.q-badge.inference{background:#fefcbf;color:#975a16}
+.q-badge.purpose{background:#fed7e2;color:#97266d}
+.q-body{padding:16px 20px}
+.q-user{font-size:.85em;margin-bottom:10px;padding:8px 12px;border-radius:6px}
+.q-user.is-correct{background:#f0fff4;color:#22543d}
+.q-user.is-wrong{background:#fff5f5;color:#9b2c2c}
+.q-user.is-skip{background:#f7fafc;color:#718096}
+.options-list{margin:10px 0}
+.opt-row{display:flex;align-items:flex-start;gap:8px;padding:6px 10px;border-radius:6px;font-size:.85em;margin-bottom:4px}
+.opt-row.is-correct{background:#f0fff4;font-weight:600}
+.opt-row.is-wrong-selected{background:#fff5f5;text-decoration:line-through;color:#e53e3e}
+.opt-label{font-weight:700;min-width:24px}
+.q-explain{background:#f7fafc;border-left:3px solid #4a90d9;padding:12px 16px;border-radius:0 6px 6px 0;margin-top:10px;font-size:.82em}
+.q-explain strong{color:#2b6cb0}
+.wrong-analysis{margin-top:8px;font-size:.82em;color:#718096}
+.wrong-analysis span{color:#e53e3e;font-weight:600}
+
+/* Nav */
+.nav-bottom{max-width:880px;margin:24px auto;text-align:center;padding-bottom:40px}
+.btn-back{display:inline-block;padding:12px 32px;background:#4a90d9;color:#fff;border:none;border-radius:8px;font-size:.95em;font-weight:600;cursor:pointer;text-decoration:none}
+.btn-back:hover{background:#3a7cc0}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎧 Listen and Choose a Response — 解答解説</h1>
+  <p>Kickstart Day 2 Homework</p>
+</div>
+
+<div class="score-summary" id="scoreSummary">
+  <p class="score-sub">あなたのスコア</p>
+  <div class="score-big" id="scoreBig">— / 8</div>
+  <div class="score-bar"><div class="score-bar-fill" id="scoreBar" style="width:0%"></div></div>
+  <p class="score-sub" id="scoreMsg"></p>
+</div>
+
+<div class="tips-banner">
+  <h2>💡 LCR 攻略のコツ</h2>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">1</div>
+      <h3>最初の2語に全集中</h3>
+      <p>Do you→Yes/No、What→Wh疑問文、Could you→依頼、How about→提案</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">2</div>
+      <h3>質問タイプを判断</h3>
+      <p>Yes/No、5W1H、依頼、提案、確認など。タイプに合う応答パターンを予測</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">3</div>
+      <h3>自然な応答を選ぶ</h3>
+      <p>「直接的すぎる答え」は疑う。会話を前に進める選択肢＝正解</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">4</div>
+      <h3>否定形に注意</h3>
+      <p>Isn't...? / Don't you...? は確認の意味。意味を逆に取らない</p>
+    </div>
+  </div>
+</div>
+
+<div class="q-section" id="qSection"></div>
+
+<div class="nav-bottom">
+  <a class="btn-back" href="lcr.html">← もう一度解く</a>
+</div>
+
+<script>
+const QS = [
+  {
+    q: "Where should students go to register for the graduation ceremony?",
+    opts: ["The student center on Main Street.","The administration building downtown.","The registrar's office on campus.","The faculty office on the third floor."],
+    correct: 2, type: "detail",
+    explain: "「卒業式の登録はどこで？」→ 場所を直接答える応答が自然。(C)はregistrar's officeという具体的な場所を提示し、会話を前に進めています。",
+    wrongAnalysis: "(A)(B)(D)はキャンパス関連の場所だが、registrationに関係ない場所で引っかけ。"
+  },
+  {
+    q: "Did you hear that the snack bar on the second floor is closing?",
+    opts: ["No, I usually eat at the cafeteria.","Yes, I bought something there today.","I heard they are adding more options.","Really? I go there almost every day."],
+    correct: 3, type: "detail",
+    explain: "「スナックバーが閉まるって聞いた？」→ 驚き＋個人的な影響を述べる(D)が最も自然。新情報に対する感情的なリアクションが会話を前に進めます。",
+    wrongAnalysis: "(A)は関連するが「聞いた？」への返答としてずれている。(B)は今日買った話で「閉まる」ニュースに対する応答として不自然。(C)は逆の情報。"
+  },
+  {
+    q: "The parking garage is full right now. Do you know of any other options nearby?",
+    opts: ["There's a public lot behind the science building.","I parked my car at home this morning.","The garage was built about five years ago.","You should take the elevator to the third floor."],
+    correct: 0, type: "detail",
+    explain: "「駐車場が満車。近くに他のオプションは？」→ 代替の駐車場所を教える(A)が直接的な解決策。「Do you know〜?」には情報提供型の応答が最適。",
+    wrongAnalysis: "(B)は自分の話で質問に答えていない。(C)はガレージの歴史で無関係。(D)はエレベーターの話で駐車と無関係。"
+  },
+  {
+    q: "I was wondering if you'd like to co-present at the research symposium next month.",
+    opts: ["The symposium was really interesting last year.","That sounds great — what topic did you have in mind?","I already submitted my paper to the journal.","The deadline for the conference is next week."],
+    correct: 1, type: "inference",
+    explain: "「研究シンポジウムで共同発表しませんか？」→ 提案への承諾＋次のステップを確認する(B)が自然。「What topic?」で会話が具体的に進みます。",
+    wrongAnalysis: "(A)は過去の感想で提案に答えていない。(C)は論文提出の話でずれている。(D)は別の締め切りの話。"
+  },
+  {
+    q: "Has anyone picked up the emergency procedures guide from the front desk?",
+    opts: ["I think the front desk closes at five.","The emergency exit is at the end of the hall.","I don't think it's been updated yet.","Not yet, but I can grab one after class."],
+    correct: 3, type: "detail",
+    explain: "「緊急マニュアルを受け取った人は？」→ 「まだだけど授業後に取りに行く」(D)は質問に直接答え、次のアクションまで提示。",
+    wrongAnalysis: "(A)はフロントの閉店時間で質問に答えていない。(B)は非常口の場所で無関係。(C)は更新の話でguideを取ったかどうかに答えていない。"
+  },
+  {
+    q: "I really want to see the new art exhibit this weekend. Have you been yet?",
+    opts: ["The museum is closed on Mondays.","Yes, it's amazing — you should definitely check it out.","I prefer modern art to classical art.","The exhibit was designed by a famous architect."],
+    correct: 1, type: "detail",
+    explain: "「今週末アート展に行きたい。もう行った？」→ (B)は「行った、すごかった、おすすめ」と質問に直接答え、会話を盛り上げます。",
+    wrongAnalysis: "(A)は月曜休館の話で週末に関係ない。(C)は好みの話で質問に答えていない。(D)は建築家の話でずれている。"
+  },
+  {
+    q: "I need to print my essay, but I heard the library changed its printing policy.",
+    opts: ["You should ask the librarian about borrowing books.","Yes, the library has a lot of new computers now.","Right — you now need to use your student ID to print.","I finished my essay last night."],
+    correct: 2, type: "detail",
+    explain: "「印刷ポリシーが変わったと聞いた」→ (C)は新しいポリシーの具体的な内容（学生証が必要）を教える応答。相手が知りたい情報を直接提供。",
+    wrongAnalysis: "(A)は本の貸出で印刷と無関係。(B)は新しいPCの話でポリシー変更に答えていない。(D)は自分のエッセイの話。"
+  },
+  {
+    q: "The professor said the statistics final will cover chapters seven through twelve.",
+    opts: ["That's a lot of material — we should start reviewing soon.","Statistics is one of the most popular majors here.","I took statistics last semester with a different professor.","The final exam schedule is posted on the website."],
+    correct: 0, type: "inference",
+    explain: "「統計の期末は7〜12章」→ (A)は「量が多い→早めに復習しよう」と情報を受けてアクションを提案。共感＋建設的な提案が自然。",
+    wrongAnalysis: "(B)は統計学の人気の話で試験に無関係。(C)は去年の話。(D)はスケジュール掲載の話で、範囲に対する応答ではない。"
+  }
+];
+
+const labels = ['A','B','C','D'];
+
+function render(){
+  // Score from sessionStorage
+  const stored = JSON.parse(sessionStorage.getItem('lcrAnswers')||'{}');
+  let correct = 0, answered = 0;
+  for(let i=1;i<=8;i++){
+    if(stored['q'+i]){
+      answered++;
+      if(stored['q'+i].isCorrect) correct++;
+    }
+  }
+
+  if(answered > 0){
+    document.getElementById('scoreBig').textContent = correct + ' / 8';
+    document.getElementById('scoreBar').style.width = (correct/8*100)+'%';
+    const pct = Math.round(correct/8*100);
+    let msg = pct >= 80 ? '素晴らしい！🎉' : pct >= 50 ? 'いい調子！もう少し！' : '復習して次に活かそう💪';
+    document.getElementById('scoreMsg').textContent = pct + '% 正答率 — ' + msg;
+  } else {
+    document.getElementById('scoreBig').textContent = '— / 8';
+    document.getElementById('scoreMsg').textContent = '問題を先に解いてからこのページを見ると、スコアが表示されます';
+  }
+
+  // Render question cards
+  const section = document.getElementById('qSection');
+  let html = '';
+  QS.forEach((q, i) => {
+    const qNum = i + 1;
+    const userData = stored['q'+qNum];
+    const userSelected = userData ? userData.selected : null;
+    const userIdx = userSelected ? labels.indexOf(userSelected) : -1;
+    const isCorrect = userData ? userData.isCorrect : false;
+    const isSkip = !userData;
+
+    const numClass = isSkip ? 'skip' : (isCorrect ? 'correct' : 'wrong');
+    const typeBadge = q.type === 'inference' ? '<span class="q-badge inference">Inference</span>' : '<span class="q-badge detail">Detail</span>';
+
+    // User result line
+    let userLine = '';
+    if(isSkip){
+      userLine = '<div class="q-user is-skip">⏱️ 未回答（タイムアウト）</div>';
+    } else if(isCorrect){
+      userLine = '<div class="q-user is-correct">✅ 正解！ あなたの回答: ('+userSelected+')</div>';
+    } else {
+      userLine = '<div class="q-user is-wrong">❌ あなたの回答: ('+userSelected+') → 正解: ('+labels[q.correct]+')</div>';
+    }
+
+    // Options
+    let optsHtml = '';
+    q.opts.forEach((opt, oi) => {
+      let cls = '';
+      if(oi === q.correct) cls = ' is-correct';
+      else if(oi === userIdx && !isCorrect) cls = ' is-wrong-selected';
+      optsHtml += '<div class="opt-row'+cls+'"><span class="opt-label">('+labels[oi]+')</span> '+opt+'</div>';
+    });
+
+    html += '<div class="q-card">'
+      + '<div class="q-header"><div class="q-num '+numClass+'">'+qNum+'</div>'
+      + '<div class="q-prompt">'+q.q+'</div>'+typeBadge+'</div>'
+      + '<div class="q-body">'
+      + userLine
+      + '<div class="options-list">'+optsHtml+'</div>'
+      + '<div class="q-explain"><strong>解説：</strong> '+q.explain+'</div>'
+      + '<div class="wrong-analysis"><span>不正解の見抜き方：</span> '+q.wrongAnalysis+'</div>'
+      + '</div></div>';
+  });
+  section.innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>
