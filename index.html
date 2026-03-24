@@ -90,7 +90,7 @@ h1{font-size:1.35em;font-weight:800;color:#2d3748;margin-bottom:2px}
       <input type="password" id="regPass" placeholder="4文字以上" autocomplete="new-password">
     </div>
     <div class="field">
-      <label>メールアドレス <span style="font-weight:400;color:#a0aec0">（パスワード確認用・任意）</span></label>
+      <label>メールアドレス</label>
       <input type="email" id="regEmail" placeholder="example@email.com" autocomplete="email">
     </div>
     <button class="btn btn-primary" id="btnRegister" onclick="doRegister()">
@@ -154,7 +154,7 @@ function doRegister() {
       pass=document.getElementById('regPass').value.trim(), email=document.getElementById('regEmail').value.trim(),
       err=document.getElementById('errReg'), succ=document.getElementById('succReg');
   err.textContent=''; succ.textContent='';
-  if(!name||!id||!pass){err.textContent='お名前・ID・パスワードは必須です';return;}
+  if(!name||!id||!pass||!email){err.textContent='すべての項目を入力してください';return;}
   setLoading('btnRegister','spinReg',true);
   Api.register(id,pass,name,email).then(function(r){
     if(r.success){succ.textContent='登録完了！';setTimeout(function(){saveAndGo(r);},400);}
