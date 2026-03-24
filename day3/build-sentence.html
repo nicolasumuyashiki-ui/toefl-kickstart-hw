@@ -91,7 +91,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
 <div class="top-nav">
 <div class="nav-left"><span class="section-label">Writing</span><span class="divider">|</span><span class="task-label">Build a Sentence</span></div>
 <div class="nav-right">
-<span class="timer-display" id="timer">06:00</span>
+<span class="timer-display" id="timer">08:00</span>
 <button class="finish-btn" id="btnFinish" onclick="showModal()" style="display:none">Finish</button>
 <div class="user-badge" id="userBadge">?</div>
 </div>
@@ -106,11 +106,11 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
 <thead><tr><th>Detail</th><th>Info</th></tr></thead>
 <tbody>
 <tr><td>Questions</td><td>14</td></tr>
-<tr><td>Time Limit</td><td>6 minutes</td></tr>
+<tr><td>Time Limit</td><td>8 minutes</td></tr>
 <tr><td>Format</td><td>Drag words from the Word Bank into the blank slots</td></tr>
 </tbody>
 </table>
-<div class="warning-box">⏱️ You have <strong>6 minutes</strong>. Click "Start" to begin. You can finish early with the Finish button.</div>
+<div class="warning-box">⏱️ You have <strong>8 minutes</strong>. Click "Start" to begin. You can finish early with the Finish button.</div>
 <button class="btn-start" onclick="startQuiz()">Start</button>
 </div>
 </div>
@@ -170,7 +170,7 @@ const questions=[
 // Shuffle word banks
 function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
-let currentQ=0,userAnswers=[],timerInterval=null,secondsLeft=360,isActive=false;
+let currentQ=0,userAnswers=[],timerInterval=null,secondsLeft=480,isActive=false;
 questions.forEach(()=>userAnswers.push([]));
 
 // Assign images
@@ -194,7 +194,7 @@ function startTimer(){
   updateTimer();
   timerInterval=setInterval(()=>{
     secondsLeft--;updateTimer();
-    document.getElementById('progressFill').style.width=((360-secondsLeft)/360*100)+'%';
+    document.getElementById('progressFill').style.width=((480-secondsLeft)/480*100)+'%';
     if(secondsLeft<=60)document.getElementById('timer').classList.add('warning');
     if(secondsLeft<=0){clearInterval(timerInterval);finishQuiz();}
   },1000);
