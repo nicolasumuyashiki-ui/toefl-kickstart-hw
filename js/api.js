@@ -2,7 +2,7 @@
  * api.js — GAS API通信モジュール
  * 【重要】デプロイ後、下のURLを自分のGASウェブアプリURLに置換すること
  */
-var API_URL = 'YOUR_GAS_DEPLOY_URL_HERE';
+var API_URL = 'https://script.google.com/macros/s/AKfycbwSS8PVVtK0o9otRQ0cCPBFxoXeivf51aCbxpGcO0crCEyyyRynX74Z1lYXeKFyoHJr/exec';
 
 var Api = {
   login: function(id, pass) {
