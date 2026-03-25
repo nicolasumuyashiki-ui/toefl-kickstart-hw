@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TOEFL iBT Kickstart — 宿題メニュー</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL iBT Kickstart — 宿題メニュー</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
 :root{
-  --teal:#1a6b6a;--teal-light:#e8f5f4;--teal-mid:#48b0a8;
-  --day1:#3b82c8;--day1-bg:#eef4fb;--day1-accent:#d0e2f5;
-  --day2:#e07b3a;--day2-bg:#fdf3ec;--day2-accent:#f5dcc8;
-  --day3:#7c5cbf;--day3-bg:#f3f0fa;--day3-accent:#ddd4f0;
-  --day4:#d4547a;--day4-bg:#fceef3;--day4-accent:#f5d0de;
+--teal:#1a6b6a;--teal-light:#e8f5f4;--teal-mid:#48b0a8;
+--day1:#3b82c8;--day1-bg:#eef4fb;--day1-accent:#d0e2f5;
+--day2:#e07b3a;--day2-bg:#fdf3ec;--day2-accent:#f5dcc8;
+--day3:#7c5cbf;--day3-bg:#f3f0fa;--day3-accent:#ddd4f0;
+--day4:#d4547a;--day4-bg:#fceef3;--day4-accent:#f5d0de;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#2d3748}
-
-/* Header */
 .header{background:#fff;border-bottom:1px solid #e8ecf0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
 .header-left{display:flex;align-items:center;gap:10px}
 .header-logo{font-size:.72em;font-weight:800;color:var(--teal);letter-spacing:.1em;text-transform:uppercase}
@@ -26,30 +24,23 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
 .user-pill .avatar{width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.65em;font-weight:800}
 .btn-logout{background:none;border:1px solid #dfe3e8;border-radius:8px;padding:5px 12px;font-size:.75em;font-weight:600;color:#8898a8;cursor:pointer;font-family:inherit;transition:all .2s}
 .btn-logout:hover{background:#f9fafb;color:#5a6878}
-
-/* Hero */
 .hero{background:linear-gradient(135deg,#1a6b6a 0%,#2a8f8d 50%,#48b0a8 100%);padding:36px 24px 60px;text-align:center;color:#fff;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;bottom:-30px;left:-10%;width:120%;height:80px;background:#f5f7fa;border-radius:50% 50% 0 0;z-index:0}
 .hero h1{font-size:1.5em;font-weight:800;margin-bottom:6px;position:relative;z-index:1}
 .hero p{font-size:.9em;opacity:1;position:relative;z-index:1;color:rgba(255,255,255,.9)}
 .hero .emoji{font-size:1.3em;margin-right:4px}
-
-/* Day Grid */
 .day-grid{max-width:900px;margin:-20px auto 40px;padding:0 20px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px;position:relative;z-index:2}
 @media(max-width:640px){.day-grid{grid-template-columns:1fr}}
-
 .day-card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.05);overflow:hidden;transition:all .25s;cursor:pointer;border:2px solid transparent;position:relative}
 .day-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
 .day-card.locked{opacity:.55;cursor:not-allowed}
 .day-card.locked:hover{transform:none;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-
 .day-card-top{padding:20px 22px 16px;display:flex;align-items:flex-start;gap:14px}
 .day-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35em;flex-shrink:0}
 .day-card[data-day="1"] .day-icon{background:var(--day1-bg);color:var(--day1)}
 .day-card[data-day="2"] .day-icon{background:var(--day2-bg);color:var(--day2)}
 .day-card[data-day="3"] .day-icon{background:var(--day3-bg);color:var(--day3)}
 .day-card[data-day="4"] .day-icon{background:var(--day4-bg);color:var(--day4)}
-
 .day-info{flex:1}
 .day-label{font-size:.68em;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
 .day-card[data-day="1"] .day-label{color:var(--day1)}
@@ -58,7 +49,6 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
 .day-card[data-day="4"] .day-label{color:var(--day4)}
 .day-title{font-size:1.05em;font-weight:800;color:#2d3748;margin-bottom:4px}
 .day-desc{font-size:.78em;color:#8898a8;line-height:1.5}
-
 .day-card-bottom{padding:0 22px 18px;display:flex;align-items:center;justify-content:space-between}
 .day-tasks{font-size:.72em;color:#a0aec0;font-weight:600}
 .day-arrow{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85em;transition:all .2s}
@@ -67,10 +57,7 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
 .day-card[data-day="3"] .day-arrow{background:var(--day3-bg);color:var(--day3)}
 .day-card[data-day="4"] .day-arrow{background:var(--day4-bg);color:var(--day4)}
 .day-card:hover .day-arrow{transform:translateX(2px)}
-
 .lock-badge{position:absolute;top:12px;right:12px;background:#e8ecf0;color:#a0aec0;font-size:.65em;font-weight:700;padding:3px 10px;border-radius:8px}
-
-/* Sub-menu overlay */
 .sub-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.35);z-index:200;justify-content:center;align-items:center;padding:20px}
 .sub-overlay.active{display:flex}
 .sub-panel{background:#fff;border-radius:18px;width:100%;max-width:520px;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.15);animation:slideUp .3s ease}
@@ -92,11 +79,9 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
 .task-desc{font-size:.72em;color:#a0aec0;line-height:1.4}
 .task-arrow{color:#c8d0da;font-size:.85em;font-weight:700}
 .task-card:hover .task-arrow{color:#8898a8}
-  </style>
+</style>
 </head>
 <body>
-
-<!-- Header -->
 <div class="header">
   <div class="header-left">
     <span class="header-logo">TCK Workshop</span>
@@ -111,15 +96,13 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
   </div>
 </div>
 
-<!-- Hero -->
 <div class="hero">
   <h1><span class="emoji">📚</span> New TOEFL iBT Kickstart 4Days</h1>
   <p>各Dayの宿題に取り組もう！</p>
 </div>
 
-<!-- Day Grid -->
 <div class="day-grid">
-
+  <!-- Day 1: ACTIVE -->
   <div class="day-card" data-day="1" onclick="openDay(1)">
     <div class="day-card-top">
       <div class="day-icon">📖</div>
@@ -135,24 +118,24 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
     </div>
   </div>
 
-  <div class="day-card locked" data-day="2">
-    <span class="lock-badge">準備中</span>
+  <!-- Day 2: ACTIVE -->
+  <div class="day-card" data-day="2" onclick="openDay(2)">
     <div class="day-card-top">
       <div class="day-icon">🎧</div>
       <div class="day-info">
         <div class="day-label">Day 2</div>
         <div class="day-title">Listening 攻略</div>
-        <div class="day-desc">Listen and Choose、Conversation、Announcement</div>
+        <div class="day-desc">Listen and Choose、Conversation、Announcement、Academic Talk</div>
       </div>
     </div>
     <div class="day-card-bottom">
-      <span class="day-tasks">Coming Soon</span>
+      <span class="day-tasks">4種の宿題</span>
       <span class="day-arrow">→</span>
     </div>
   </div>
 
-  <div class="day-card locked" data-day="3">
-    <span class="lock-badge">準備中</span>
+  <!-- Day 3: ACTIVE -->
+  <div class="day-card" data-day="3" onclick="openDay(3)">
     <div class="day-card-top">
       <div class="day-icon">✍️</div>
       <div class="day-info">
@@ -162,13 +145,13 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
       </div>
     </div>
     <div class="day-card-bottom">
-      <span class="day-tasks">Coming Soon</span>
+      <span class="day-tasks">3種の宿題</span>
       <span class="day-arrow">→</span>
     </div>
   </div>
 
-  <div class="day-card locked" data-day="4">
-    <span class="lock-badge">準備中</span>
+  <!-- Day 4: ACTIVE -->
+  <div class="day-card" data-day="4" onclick="openDay(4)">
     <div class="day-card-top">
       <div class="day-icon">🎙️</div>
       <div class="day-info">
@@ -178,14 +161,12 @@ body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#
       </div>
     </div>
     <div class="day-card-bottom">
-      <span class="day-tasks">Coming Soon</span>
+      <span class="day-tasks">2種の宿題</span>
       <span class="day-arrow">→</span>
     </div>
   </div>
-
 </div>
 
-<!-- Sub-menu overlay for Day details -->
 <div class="sub-overlay" id="subOverlay">
   <div class="sub-panel" id="subPanel"></div>
 </div>
@@ -199,20 +180,40 @@ if (user) {
   document.getElementById('userName').textContent = user.userName;
   document.getElementById('avatarInit').textContent = user.userName.charAt(0);
 }
+function doLogout() { sessionStorage.clear(); window.location.href = 'index.html'; }
 
-function doLogout() {
-  sessionStorage.clear();
-  window.location.href = 'index.html';
-}
-
-/* Day data */
+/* Day data — updated with all available tasks */
 var DAYS = {
   1: {
     label: 'Day 1', title: 'Reading 攻略', icon: '📖', color: 'var(--day1)', bg: 'var(--day1-bg)',
     tasks: [
       { emoji:'📝', title:'Complete the Words（3パラグラフ）', desc:'空欄の文字を推測して埋める練習', href:'day1/ctw-1.html' },
-      { emoji:'📰', title:'Read in Daily Life（2題）', desc:'日常テキストの読解問題', href:null },
-      { emoji:'📘', title:'Academic Passage（2題）', desc:'学術的な文章の読解問題', href:null }
+      { emoji:'📰', title:'Read in Daily Life（2題）', desc:'日常テキストの読解問題', href:'day1/rdl-1.html' },
+      { emoji:'📘', title:'Academic Passage（1題）', desc:'学術的な文章の読解問題', href:'day1/academic-1.html' }
+    ]
+  },
+  2: {
+    label: 'Day 2', title: 'Listening 攻略', icon: '🎧', color: 'var(--day2)', bg: 'var(--day2-bg)',
+    tasks: [
+      { emoji:'🔊', title:'Listen and Choose a Response', desc:'短い質問を聞いて最適な応答を選ぶ', href:'day2/lcr.html' },
+      { emoji:'💬', title:'Listen to a Conversation', desc:'キャンパス会話の聞き取り問題', href:'day2/listening-conv.html' },
+      { emoji:'📢', title:'Listen to an Announcement', desc:'短いお知らせの聞き取り問題', href:'day2/listening-announce.html' },
+      { emoji:'🎓', title:'Listen to an Academic Talk', desc:'学術トークの聞き取り問題', href:'day2/listening-academic.html' }
+    ]
+  },
+  3: {
+    label: 'Day 3', title: 'Writing 攻略', icon: '✍️', color: 'var(--day3)', bg: 'var(--day3-bg)',
+    tasks: [
+      { emoji:'🔤', title:'Build a Sentence', desc:'バラバラの単語を正しい語順に並べ替える', href:'day3/build-sentence.html' },
+      { emoji:'✉️', title:'Write an Email', desc:'メール作成の練習', href:'day3/write-email.html' },
+      { emoji:'💭', title:'Academic Discussion', desc:'学術ディスカッションへの投稿練習', href:'day3/academic-discussion.html' }
+    ]
+  },
+  4: {
+    label: 'Day 4', title: 'Speaking 攻略', icon: '🎙️', color: 'var(--day4)', bg: 'var(--day4-bg)',
+    tasks: [
+      { emoji:'🔊', title:'Listen and Repeat（7文）', desc:'聞いた文を正確に繰り返す練習', href:'day4/lr-1.html' },
+      { emoji:'🎤', title:'Take an Interview（4問）', desc:'インタビュー形式の即興回答練習', href:'day4/ti-1.html' }
     ]
   }
 };
@@ -220,32 +221,24 @@ var DAYS = {
 function openDay(n) {
   var d = DAYS[n];
   if (!d) return;
-
-  var html = '<div class="sub-header">'
-    + '<div class="sub-header-left"><div class="sub-header-icon" style="background:' + d.bg + '">' + d.icon + '</div><h3>' + d.label + '：' + d.title + '</h3></div>'
-    + '<button class="sub-close" onclick="closeDay()">&times;</button></div>'
-    + '<div class="sub-body">';
-
+  var html = '<div class="sub-header">' +
+    '<div class="sub-header-left"><div class="sub-header-icon" style="background:' + d.bg + '">' + d.icon + '</div><h3>' + d.label + '：' + d.title + '</h3></div>' +
+    '<button class="sub-close" onclick="closeDay()">&times;</button></div>' +
+    '<div class="sub-body">';
   d.tasks.forEach(function(t) {
     var isDisabled = !t.href;
-    html += '<a class="task-card' + (isDisabled ? ' disabled' : '') + '"'
-      + (t.href ? ' href="' + t.href + '"' : '') + '>'
-      + '<span class="task-emoji">' + t.emoji + '</span>'
-      + '<div class="task-info"><div class="task-title">' + t.title + '</div><div class="task-desc">' + t.desc + (isDisabled ? ' — 準備中' : '') + '</div></div>'
-      + '<span class="task-arrow">' + (isDisabled ? '🔒' : '→') + '</span></a>';
+    html += '<a class="task-card' + (isDisabled ? ' disabled' : '') + '"' +
+      (t.href ? ' href="' + t.href + '"' : '') + '>' +
+      '<span class="task-emoji">' + t.emoji + '</span>' +
+      '<div class="task-info"><div class="task-title">' + t.title + '</div><div class="task-desc">' + t.desc + (isDisabled ? ' — 準備中' : '') + '</div></div>' +
+      '<span class="task-arrow">' + (isDisabled ? '🔒' : '→') + '</span></a>';
   });
-
   html += '</div>';
   document.getElementById('subPanel').innerHTML = html;
   document.getElementById('subOverlay').classList.add('active');
 }
-
-function closeDay() {
-  document.getElementById('subOverlay').classList.remove('active');
-}
-document.getElementById('subOverlay').addEventListener('click', function(e) {
-  if (e.target === this) closeDay();
-});
+function closeDay() { document.getElementById('subOverlay').classList.remove('active'); }
+document.getElementById('subOverlay').addEventListener('click', function(e) { if (e.target === this) closeDay(); });
 </script>
 </body>
 </html>
