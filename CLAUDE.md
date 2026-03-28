@@ -27,3 +27,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - js/api.js の GAS_URL を変更しない（本番URLが入っている）
 - index.html, menu.html の認証ロジックを変更しない
 - 既存の問題ファイルの正解を勝手に変更しない（必ず確認を求めること）
+
+## 問題作成のルール
+- 問題作成時は、必ず対応する docs/history-{技能}.md を先に読んで重複を避けること
+- 作成後は使用したトピックを history ファイルに追記すること
+
+### Slashコマンド一覧
+| コマンド | Day | 参照するhistory |
+|---|---|---|
+| /new-ctw | 1 | docs/history-reading.md |
+| /new-academic | 1 | docs/history-reading.md |
+| /new-rdl | 1 | docs/history-reading.md |
+| /new-lcr | 2 | docs/history-listening.md |
+| /new-conv | 2 | docs/history-listening.md |
+| /new-announce | 2 | docs/history-listening.md |
+| /new-talk | 2 | docs/history-listening.md |
+| /new-sentence | 3 | docs/history-writing.md |
+| /new-email | 3 | docs/history-writing.md |
+| /new-discussion | 3 | docs/history-writing.md |
+| /new-lr | 4 | docs/history-speaking.md |
+| /new-ti | 4 | docs/history-speaking.md |
