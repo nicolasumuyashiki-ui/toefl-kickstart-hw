@@ -169,7 +169,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
         <div class="response-header">
           <h3>Your Response:</h3>
           <div class="email-meta">
-            <strong>To:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e4b4a475a415c6e414f455c474a494b5b4047584b5c5d475a575a47434b5d004d4143">[email&#160;protected]</a><br>
+            <strong>To:</strong> editor@oakridgeuniversitytimes.com<br>
             <strong>Subject:</strong> Corrections Needed in Study Abroad Article
           </div>
         </div>
@@ -208,7 +208,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
       </div>
       <div class="preview-box">
         <div class="preview-meta">
-          <strong>To:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82e7e6ebf6edf0c2ede3e9f0ebe6e5e7f7ecebf4e7f0f1ebf6fbf6ebefe7f1ace1edef">[email&#160;protected]</a><br>
+          <strong>To:</strong> editor@oakridgeuniversitytimes.com<br>
           <strong>Subject:</strong> Corrections Needed in Study Abroad Article
         </div>
         <div class="preview-text" id="previewText"></div>
@@ -237,7 +237,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/auth.js"></script>
+<script src="../js/auth.js"></script>
 <script>
 /* ===== AUTH ===== */
 if(typeof Auth!=='undefined'){Auth.require();Auth.showBadge('userBadge');}
@@ -413,4 +413,22 @@ function finishWriting(method){
 
 /* ===== RESET ===== */
 function resetAll(){
-  if(!confirm('Are you sure you want to reset? This will clear your response and re
+  if(!confirm('Are you sure you want to reset? This will clear your response and restart the timer.')) return;
+  document.getElementById('writingArea').value = '';
+  updateWordCount();
+  clearInterval(timerInterval);
+  secondsLeft = totalSeconds;
+  isWriting = false;
+
+  document.getElementById('writingPage').style.display='none';
+  document.getElementById('completionPage').style.display='none';
+  document.getElementById('instructionPage').style.display='flex';
+  document.getElementById('btnFinish').style.display='none';
+  document.getElementById('btnReset').style.display='none';
+  document.getElementById('progressFill').style.width='0%';
+  document.getElementById('timer').textContent='07:00';
+  document.getElementById('timer').classList.remove('warning');
+}
+</script>
+</body>
+</html>
