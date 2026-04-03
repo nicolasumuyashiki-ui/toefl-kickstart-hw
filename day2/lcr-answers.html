@@ -99,7 +99,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fa;
 <script>
 const QS = [
   {
-    q: "Have you signed up for the graduation ceremony yet?",
+    q: "Have you signed up for the graduation ceremony yet? I think today might be the last day.",
     type: "detail",
     opts: [
       "The deadline was actually last Monday.",
@@ -108,11 +108,11 @@ const QS = [
       "I think they mailed it to your address."
     ],
     correct: 2,
-    explain: "「卒業式にもう登録した？」という質問に対して、(C)は「alumni officeでまだ登録できる」と具体的な情報を提供し、会話を前に進めている。",
-    hint: "Have you...? への自然な応答 → 状況＋具体的なアドバイスの組み合わせ。(A)は過去の締切、(B)は別の話題、(D)は郵送の話で質問に直接答えていない。"
+    explain: "「卒業式にもう登録した？今日が最終日かも」→ (C)は「alumni officeでまだ登録できる」と具体的な場所と手段を教え、会話を前に進めている。",
+    hint: "Have you...? ＋ 締切情報への自然な応答 → 状況＋具体的なアドバイス。(A)は「月曜が締切だった」と矛盾する情報、(B)はガウンの話で別の話題、(D)は郵送で無関係。"
   },
   {
-    q: "Did you hear that the snack bar on the second floor is closing?",
+    q: "I wish the snack bar near the science building didn't close so early.",
     type: "detail",
     opts: [
       "I usually eat lunch around noon.",
@@ -121,11 +121,11 @@ const QS = [
       "I heard they're renovating over the summer."
     ],
     correct: 3,
-    explain: "「2階のスナックバーが閉まるって聞いた？」→ (D)は「夏に改装するらしい」と関連情報を追加し、ニュースに対する自然なリアクション。",
-    hint: "Did you hear...? は新情報の共有。自然な応答は「関連する追加情報」か「驚きの反応」。(A)(B)(C)はfood関連だが、閉店ニュースへの応答としてずれている。"
+    explain: "「理科棟近くのスナックバーがもっと遅くまでやってればいいのに」→ (D)は「夏に改装するらしい」と関連情報を追加。改装後に営業時間が変わる可能性を示唆する自然な応答。",
+    hint: "I wish...は不満・願望の表明。自然な応答は「共感」か「関連する新情報」。(D)は改装情報で希望につながる。(A)は昼食の話、(B)は自販機、(C)はmeal planで話題がずれている。"
   },
   {
-    q: "The parking garage is full right now. Do you know of any other options nearby?",
+    q: "The parking garage on the west side of campus is completely full again.",
     type: "detail",
     opts: [
       "It might be quicker to walk from here.",
@@ -134,11 +134,11 @@ const QS = [
       "You should check the shuttle schedule online."
     ],
     correct: 0,
-    explain: "「駐車場が満車。近くに他の手段は？」→ (A)は「ここから歩いた方が早いかも」と代替手段を提案。問題への直接的な解決策。",
-    hint: "Do you know...? には情報提供型の応答が最適。(B)はキャンパスツアーで無関係、(C)は自分の話、(D)はシャトルで方向性は近いが「nearby options」への直接回答は(A)。"
+    explain: "「キャンパス西側の駐車場がまた満車だ」→ (A)は「ここから歩いた方が早いかも」と代替手段を提案。困っている相手に対する直接的な解決策。",
+    hint: "状況報告（困っている）への自然な応答 → 解決策の提案。(A)は具体的な代替手段。(B)はキャンパスツアーで無関係、(C)は自分の失敗談、(D)はシャトルで方向性は近いが歩く方が直接的。"
   },
   {
-    q: "I was wondering if you'd like to co-present at the research symposium next month.",
+    q: "Would you want to present our research findings together at the symposium?",
     type: "inference",
     opts: [
       "I haven't picked my major yet either.",
@@ -147,11 +147,11 @@ const QS = [
       "I don't think we need that many sources."
     ],
     correct: 1,
-    explain: "「来月の研究シンポジウムで一緒に発表しない？」→ (B)は「いいよ、でも事前にリハーサルするならね」と条件付き承諾。提案に対して次のステップを示す自然な応答。",
-    hint: "I was wondering if...は丁寧な提案。承諾・条件付き承諾・辞退のいずれかが自然。(A)(C)(D)は研究に関連する単語を含むが、共同発表の提案への応答になっていない。"
+    explain: "「シンポジウムで一緒に研究成果を発表しない？」→ (B)は「いいよ、でも事前にリハーサルするならね」と条件付き承諾。提案に対して次のステップを示す自然な応答。",
+    hint: "Would you want to...? は提案・誘い。承諾・条件付き承諾・辞退のいずれかが自然。(A)は専攻の話で無関係、(C)は締切延長で別の話、(D)は資料数で発表提案への応答になっていない。"
   },
   {
-    q: "Has anyone picked up the emergency procedures guide from the front desk?",
+    q: "Do you know where I can get a copy of the Campus Emergency Procedures Guide?",
     type: "detail",
     opts: [
       "They usually have extras at orientation.",
@@ -160,11 +160,11 @@ const QS = [
       "I got mine through the department website."
     ],
     correct: 3,
-    explain: "「フロントデスクの緊急マニュアルを誰か受け取った？」→ (D)は「自分はdepartment websiteで手に入れた」と質問に答えつつ別の入手方法を示唆。",
-    hint: "Has anyone...? への自然な応答 → 自分の経験を共有して情報提供。(A)はorientationの話、(B)は場所案内で無関係、(C)はフォームの話で別の書類。"
+    explain: "「キャンパス緊急マニュアルはどこで手に入る？」→ (D)は「自分はdepartment websiteで手に入れた」と具体的な入手方法を教えている。",
+    hint: "Do you know where...? には場所・方法の情報提供が自然。(D)は実際に手に入れた方法を共有。(A)はorientationの話で今すぐの役に立たない、(B)は場所案内だが別の施設、(C)は別の書類の話。"
   },
   {
-    q: "I really want to see the new art exhibit this weekend. Have you been yet?",
+    q: "Professor Lane wants us to visit the new art exhibit before class on Wednesday, but I've got a conflict.",
     type: "detail",
     opts: [
       "I thought the exhibit opened next month.",
@@ -173,11 +173,11 @@ const QS = [
       "You could ask for an extension instead."
     ],
     correct: 1,
-    explain: "「今週末アート展に行きたい。もう行った？」→ (B)は「週末はギャラリーが早く閉まる」と、行こうとしている人に役立つ実用情報を提供。",
-    hint: "Have you been...? には行った/行ってない＋関連情報が自然。(B)は開館時間の注意点。(A)は開催時期の認識違い、(C)(D)は展示と無関係。"
+    explain: "「レイン教授が水曜の授業前にアート展に行けと言ってるけど、予定が被ってる」→ (B)は「週末はギャラリーが早く閉まる」と、水曜以外に行く場合の注意点を提供。代替案として役立つ情報。",
+    hint: "困っている状況の共有 → 共感や代替案の提示が自然。(B)は週末に行く案の情報。(A)は開催時期の誤解、(C)は読書量の不満で別の話題、(D)は締切延長で展覧会とは無関係。"
   },
   {
-    q: "I need to print my essay, but I heard the library changed its printing policy.",
+    q: "Apparently, you can't print anything in the library anymore without loading money onto your student card first.",
     type: "detail",
     opts: [
       "I think they moved it to the science wing.",
@@ -186,11 +186,11 @@ const QS = [
       "You need a student ID to check out books."
     ],
     correct: 2,
-    explain: "「エッセイを印刷したいけど図書館の印刷ポリシーが変わったらしい」→ (C)は「そうだ、ポリシー変わったの忘れてた」と共感＋確認。相手のニュースを認め会話を続ける自然な応答。",
-    hint: "I heard...（情報共有）への自然な応答 → 確認・補足・驚き。(C)は共感型の確認。(A)は場所移動の話、(B)はlab reportで無関係、(D)は本の貸出で印刷と無関係。"
+    explain: "「どうやら図書館で印刷するには、まず学生カードにお金をチャージしないといけなくなったらしい」→ (C)は「そうだ、ポリシー変わったの忘れてた」と共感＋確認。新ルールを認めて会話を続ける自然な応答。",
+    hint: "Apparently...（新情報の共有）への自然な応答 → 確認・共感・補足。(C)は「忘れてた」と共感型。(A)は場所移動の話、(B)はlab reportで無関係、(D)は本の貸出で印刷と無関係。"
   },
   {
-    q: "The professor said the statistics final will cover chapters seven through twelve.",
+    q: "I've been studying for the statistics final all week, and I still don't feel ready.",
     type: "inference",
     opts: [
       "Well, the review session is tomorrow morning.",
@@ -199,8 +199,8 @@ const QS = [
       "I didn't realize you were in that class."
     ],
     correct: 0,
-    explain: "「統計の期末は7〜12章が範囲」→ (A)は「復習セッションが明日の朝ある」と、試験準備に関連する建設的な情報を共有。範囲の広さに対するアクション提案。",
-    hint: "試験範囲の情報共有 → 準備に関する応答が自然。(A)はreview sessionという具体的な次のアクション。(B)は教科書返却で逆方向、(C)は範囲が矛盾、(D)は驚きだが会話を進めない。"
+    explain: "「統計の期末試験のために一週間ずっと勉強してるのに、まだ準備ができた気がしない」→ (A)は「復習セッションが明日の朝ある」と、不安を感じている相手に具体的な解決策を提示。",
+    hint: "不安・困りごとの共有 → 共感＋具体的な助言が自然。(A)はreview sessionという具体的な次のアクション。(B)は教科書返却で逆方向、(C)は範囲の情報だが相手の不安への対応になっていない、(D)は驚きだが会話を進めない。"
   }
 ];
 
