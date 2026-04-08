@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "toefl-training",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:/Users/umuyashikin/toefl-task-training", "-l", "8080"],
+      "port": 8080
+    }
+  ]
+}
