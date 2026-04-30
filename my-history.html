@@ -130,6 +130,24 @@ if (u) {
    field is whatever the source page passed to Api.saveAnswers — we
    pattern-match keywords. Anything we can't classify falls into
    "other" and shows under Day 1 by default with the raw label. */
+/* Each task → URL of its answers page. Clicking a history row jumps
+   here, where the user can see their answer vs correct (the answers
+   page falls back to Review.loadAttempt() to recover saved data). */
+var ANSWERS_URL = {
+  ctw:        'day1/ctw-answers.html',
+  rdl:        'day1/rdl-answers.html',
+  academic:   'day1/academic-answers.html',
+  lcr:        'day2/lcr-answers.html',
+  'listening-ac': 'day2/academic-answers.html',
+  announce:   'day2/announce-answers.html',
+  conv:       'day2/conv-answers.html',
+  sentence:   'day3/sentence-answers.html',
+  email:      'day3/email-answers.html',
+  disc:       'day3/discussion-answers.html',
+  lr:         'day4/lr-tips.html',
+  ti:         'day4/ti-tips.html'
+};
+
 function classifySet(setStr) {
   var s = String(setStr || '').toLowerCase();
   // Day 4 — Speaking
@@ -262,6 +280,7 @@ function render(attempts) {
         '<th>日時</th>' +
         '<th class="cnt">スコア</th>' +
         '<th class="num">正答率</th>' +
+        '<th class="num"></th>' +
       '</tr></thead><tbody>';
 
     // Newest first
@@ -272,15 +291,23 @@ function render(attempts) {
     rows.forEach(function(r){
       var pct = r.parsed.pct;
       var pctText = pct === null ? '—' : pct + '%';
-      html += '<tr>' +
+      var url = ANSWERS_URL[r.taskKey] || '';
+      var clickable = url ? ' style="cursor:pointer" onclick="location.href=\'' + url + '\'"' : '';
+      var linkCell = url
+        ? '<td class="num" style="text-align:right"><span style="display:inline-flex;align-items:center;gap:4px;color:#1a6b6a;font-size:.78em;font-weight:700">解答解説 <span style="font-size:.85em">→</span></span></td>'
+        : '<td class="num"></td>';
+      html += '<tr' + clickable + '>' +
         '<td><span class="task-pill">' + r.taskLabel + '</span></td>' +
         '<td style="color:#8898a8;font-size:.92em">' + fmtDate(r.timestamp) + '</td>' +
         '<td class="cnt"><span class="score-pill ' + gradeClass(pct) + '">' + r.parsed.label + '</span></td>' +
         '<td class="num" style="color:' + (pct === null ? '#a0aec0' : '#2d3748') + ';font-weight:700">' + pctText + '</td>' +
+        linkCell +
       '</tr>';
     });
 
-    html += '</tbody></table></div>';
+    html += '</tbody></table>' +
+      '<p style="margin-top:10px;font-size:.74em;color:#a0aec0;text-align:right">行をクリックすると解答解説ページが開き、自分の解答と正答を比較できます。</p>' +
+      '</div>';
   });
 
   // Day 0 (unclassified) at the end if any
