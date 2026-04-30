@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My History — TOEFL iBT Kickstart</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#1a6b6a;--teal-light:#e8f5f4;--teal-mid:#48b0a8;
+  --day1:#3b82c8;--day1-bg:#eef4fb;--day1-accent:#d0e2f5;
+  --day2:#e07b3a;--day2-bg:#fdf3ec;--day2-accent:#f5dcc8;
+  --day3:#7c5cbf;--day3-bg:#f3f0fa;--day3-accent:#ddd4f0;
+  --day4:#d4547a;--day4-bg:#fceef3;--day4-accent:#f5d0de;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:#f5f7fa;min-height:100vh;color:#2d3748;line-height:1.6}
+
+.header{background:#fff;border-bottom:1px solid #e8ecf0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:10px}
+.header-logo{font-size:.72em;font-weight:800;color:var(--teal);letter-spacing:.1em;text-transform:uppercase}
+.header-title{font-size:.95em;font-weight:700;color:#2d3748}
+.header-right{display:flex;align-items:center;gap:14px}
+.user-pill{display:flex;align-items:center;gap:6px;background:var(--teal-light);padding:6px 14px;border-radius:20px;font-size:.8em;font-weight:600;color:var(--teal)}
+.user-pill .avatar{width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.65em;font-weight:800}
+.btn-back{background:none;border:1px solid #dfe3e8;border-radius:8px;padding:6px 14px;font-size:.78em;font-weight:600;color:#5a6878;cursor:pointer;font-family:inherit;text-decoration:none;transition:all .15s}
+.btn-back:hover{background:#f9fafb;border-color:#c8d0da}
+
+.hero{background:linear-gradient(135deg,#1a6b6a 0%,#2a8f8d 50%,#48b0a8 100%);padding:32px 24px 48px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-30px;left:-10%;width:120%;height:80px;background:#f5f7fa;border-radius:50% 50% 0 0;z-index:0}
+.hero h1{font-size:1.5em;font-weight:800;margin-bottom:6px;position:relative;z-index:1}
+.hero p{font-size:.9em;color:rgba(255,255,255,.92);position:relative;z-index:1}
+
+.container{max-width:900px;margin:-20px auto 60px;padding:0 20px;position:relative;z-index:2}
+
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+@media(max-width:640px){.summary-grid{grid-template-columns:repeat(2,1fr)}}
+.sum-card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.sum-card[data-day="1"]{border-top:3px solid var(--day1)}
+.sum-card[data-day="2"]{border-top:3px solid var(--day2)}
+.sum-card[data-day="3"]{border-top:3px solid var(--day3)}
+.sum-card[data-day="4"]{border-top:3px solid var(--day4)}
+.sum-label{font-size:.65em;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.sum-card[data-day="1"] .sum-label{color:var(--day1)}
+.sum-card[data-day="2"] .sum-label{color:var(--day2)}
+.sum-card[data-day="3"] .sum-label{color:var(--day3)}
+.sum-card[data-day="4"] .sum-label{color:var(--day4)}
+.sum-title{font-size:.88em;font-weight:700;color:#2d3748;margin-bottom:8px}
+.sum-stat{font-size:1.55em;font-weight:800;color:#2d3748}
+.sum-stat small{font-size:.45em;color:#a0aec0;font-weight:600;margin-left:3px}
+.sum-sub{font-size:.7em;color:#8898a8;margin-top:2px}
+
+.section{background:#fff;border-radius:16px;padding:22px 24px;margin-bottom:18px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.section-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #f0f2f5}
+.section-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15em;flex-shrink:0}
+.section[data-day="1"] .section-icon{background:var(--day1-bg);color:var(--day1)}
+.section[data-day="2"] .section-icon{background:var(--day2-bg);color:var(--day2)}
+.section[data-day="3"] .section-icon{background:var(--day3-bg);color:var(--day3)}
+.section[data-day="4"] .section-icon{background:var(--day4-bg);color:var(--day4)}
+.section-info{flex:1}
+.section-label{font-size:.66em;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.section[data-day="1"] .section-label{color:var(--day1)}
+.section[data-day="2"] .section-label{color:var(--day2)}
+.section[data-day="3"] .section-label{color:var(--day3)}
+.section[data-day="4"] .section-label{color:var(--day4)}
+.section-title{font-size:1.05em;font-weight:800;color:#2d3748}
+.section-count{font-size:.78em;font-weight:700;color:#8898a8}
+
+.attempt-table{width:100%;border-collapse:collapse;font-size:.86em}
+.attempt-table th{padding:9px 12px;text-align:left;font-size:.7em;font-weight:700;color:#a0aec0;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #f0f2f5;background:#fafbfc}
+.attempt-table th.num,.attempt-table td.num{text-align:right;font-family:'Nunito',sans-serif}
+.attempt-table th.cnt{text-align:center}
+.attempt-table td{padding:11px 12px;border-bottom:1px solid #f0f2f5;color:#2d3748}
+.attempt-table tr:last-child td{border-bottom:none}
+.attempt-table tr:hover td{background:#fafbfc}
+.task-pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.74em;font-weight:700;background:var(--teal-light);color:var(--teal)}
+.score-pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.78em;font-weight:800}
+.score-pill.perfect{background:#d4edda;color:#155724}
+.score-pill.great{background:#cce5ff;color:#004085}
+.score-pill.good{background:#fff3cd;color:#856404}
+.score-pill.keep{background:#f8d7da;color:#721c24}
+.score-pill.submit{background:#e2e3e5;color:#495057}
+
+.empty{text-align:center;padding:32px 20px;color:#a0aec0;font-size:.86em}
+.empty .emoji{font-size:2em;margin-bottom:10px;opacity:.6}
+
+.loading{text-align:center;padding:40px 20px;color:#8898a8}
+.spinner{display:inline-block;width:32px;height:32px;border:3px solid #e8ecf0;border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.error-banner{background:#fef5e7;border-left:3px solid #ed8936;color:#8a6d2a;padding:14px 18px;border-radius:8px;margin-bottom:18px;font-size:.86em}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <span class="header-logo">TCK Workshop</span>
+    <span class="header-title">My History</span>
+  </div>
+  <div class="header-right">
+    <div class="user-pill">
+      <span class="avatar" id="avatarInit">?</span>
+      <span id="userName">---</span>
+    </div>
+    <a class="btn-back" href="menu.html">← メニューに戻る</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1>📊 学習履歴</h1>
+  <p>これまで取り組んだ宿題の結果をまとめて確認できます</p>
+</div>
+
+<div class="container" id="container">
+  <div class="loading"><div class="spinner"></div><div>読み込み中…</div></div>
+</div>
+
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script>
+if (!Auth.getUser()) { window.location.href = 'index.html'; }
+var u = Auth.getUser();
+if (u) {
+  document.getElementById('userName').textContent = u.userName || '';
+  document.getElementById('avatarInit').textContent = (u.userName || '?').charAt(0).toUpperCase();
+}
+
+/* Map a row's `set` string to a (day, taskKey, taskLabel). The `set`
+   field is whatever the source page passed to Api.saveAnswers — we
+   pattern-match keywords. Anything we can't classify falls into
+   "other" and shows under Day 1 by default with the raw label. */
+function classifySet(setStr) {
+  var s = String(setStr || '').toLowerCase();
+  // Day 4 — Speaking
+  if (/^lr\b|listen.+repeat/.test(s)) return { day: 4, taskKey: 'lr', taskLabel: 'Listen & Repeat' };
+  if (/^ti\b|interview/.test(s))      return { day: 4, taskKey: 'ti', taskLabel: 'Take an Interview' };
+  // Day 3 — Writing
+  if (/sentence|build.+sent/.test(s)) return { day: 3, taskKey: 'sentence', taskLabel: 'Build a Sentence' };
+  if (/^email\b|write.+email/.test(s))return { day: 3, taskKey: 'email',    taskLabel: 'Write an Email' };
+  if (/discussion/.test(s))           return { day: 3, taskKey: 'disc',     taskLabel: 'Academic Discussion' };
+  // Day 2 — Listening
+  if (/^lcr\b|listen.+choose|listen.+complete/.test(s)) return { day: 2, taskKey: 'lcr', taskLabel: 'LCR' };
+  if (/conv|conversation/.test(s))    return { day: 2, taskKey: 'conv',     taskLabel: 'Conversation' };
+  if (/announce|announcement/.test(s))return { day: 2, taskKey: 'announce', taskLabel: 'Announcement' };
+  if (/^talk\b|academic.+talk/.test(s))return{ day: 2, taskKey: 'talk',     taskLabel: 'Academic Talk' };
+  // Day 1 — Reading
+  if (/^ctw\b|complete.+word/.test(s))return { day: 1, taskKey: 'ctw',      taskLabel: 'Complete the Words' };
+  if (/^rdl\b|read.+daily/.test(s))   return { day: 1, taskKey: 'rdl',      taskLabel: 'Read in Daily Life' };
+  if (/academic|passage/.test(s))     return { day: 1, taskKey: 'academic', taskLabel: 'Academic Reading' };
+  return { day: 0, taskKey: 'other', taskLabel: setStr || '(その他)' };
+}
+
+var DAY_META = {
+  1: { label: 'Day 1', title: 'Reading 攻略',   icon: '📖' },
+  2: { label: 'Day 2', title: 'Listening 攻略', icon: '🎧' },
+  3: { label: 'Day 3', title: 'Writing 攻略',   icon: '✍️' },
+  4: { label: 'Day 4', title: 'Speaking 攻略',  icon: '🎙️' }
+};
+
+/* Try to extract numeric correct/total from various score formats:
+   "8/10" → {correct:8, total:10}
+   "85%" → {correct:null, total:null, pct:85}
+   "82" + answers length → just {correct:82} */
+function parseScore(scoreRaw) {
+  var s = String(scoreRaw || '').trim();
+  var m = s.match(/^(\d+)\s*\/\s*(\d+)/);
+  if (m) {
+    var c = parseInt(m[1], 10), t = parseInt(m[2], 10);
+    return { correct: c, total: t, pct: t > 0 ? Math.round(c / t * 100) : null, label: c + '/' + t };
+  }
+  m = s.match(/^(\d+)\s*%/);
+  if (m) {
+    return { correct: null, total: null, pct: parseInt(m[1], 10), label: m[1] + '%' };
+  }
+  m = s.match(/^(\d+)$/);
+  if (m) {
+    return { correct: parseInt(m[1], 10), total: null, pct: null, label: m[1] };
+  }
+  return { correct: null, total: null, pct: null, label: s || '—' };
+}
+
+function gradeClass(pct) {
+  if (pct === null || pct === undefined) return 'submit';
+  if (pct >= 90) return 'perfect';
+  if (pct >= 75) return 'great';
+  if (pct >= 50) return 'good';
+  return 'keep';
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  try {
+    var d = new Date(iso);
+    return d.toLocaleString('ja-JP', { year:'numeric', month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:false });
+  } catch(e) { return iso; }
+}
+
+function renderEmpty(container) {
+  container.innerHTML =
+    '<div class="section">' +
+      '<div class="empty">' +
+        '<div class="emoji">📭</div>' +
+        '<div>まだ学習履歴がありません。</div>' +
+        '<div style="margin-top:6px">メニューから宿題に取り組むと、ここに結果が表示されます。</div>' +
+      '</div>' +
+    '</div>';
+}
+
+function render(attempts) {
+  var container = document.getElementById('container');
+  if (!attempts || !attempts.length) { renderEmpty(container); return; }
+
+  // Group by day → task
+  var byDay = { 1:{}, 2:{}, 3:{}, 4:{} };
+  attempts.forEach(function(a){
+    var c = classifySet(a.set);
+    var dayBucket = byDay[c.day] || (byDay[c.day] = {});
+    var taskList = dayBucket[c.taskLabel] || (dayBucket[c.taskLabel] = []);
+    var sc = parseScore(a.score);
+    taskList.push(Object.assign({}, a, { taskKey: c.taskKey, taskLabel: c.taskLabel, parsed: sc }));
+  });
+
+  // Sum per day
+  var html = '';
+  // --- Summary cards
+  html += '<div class="summary-grid">';
+  [1,2,3,4].forEach(function(day){
+    var meta = DAY_META[day];
+    var dayBucket = byDay[day] || {};
+    var n = 0;
+    Object.keys(dayBucket).forEach(function(k){ n += dayBucket[k].length; });
+    html += '<div class="sum-card" data-day="' + day + '">' +
+      '<div class="sum-label">' + meta.label + '</div>' +
+      '<div class="sum-title">' + meta.icon + ' ' + meta.title + '</div>' +
+      '<div class="sum-stat">' + n + '<small>件</small></div>' +
+      '<div class="sum-sub">' + (n ? '取り組み済み' : 'まだ未着手') + '</div>' +
+    '</div>';
+  });
+  html += '</div>';
+
+  // --- Each day's section
+  [1,2,3,4].forEach(function(day){
+    var meta = DAY_META[day];
+    var dayBucket = byDay[day] || {};
+    var taskKeys = Object.keys(dayBucket);
+    if (!taskKeys.length) return;
+    var totalAttempts = 0;
+    taskKeys.forEach(function(k){ totalAttempts += dayBucket[k].length; });
+
+    html += '<div class="section" data-day="' + day + '">' +
+      '<div class="section-head">' +
+        '<div class="section-icon">' + meta.icon + '</div>' +
+        '<div class="section-info">' +
+          '<div class="section-label">' + meta.label + '</div>' +
+          '<div class="section-title">' + meta.title + '</div>' +
+        '</div>' +
+        '<div class="section-count">' + totalAttempts + ' 件</div>' +
+      '</div>' +
+      '<table class="attempt-table"><thead><tr>' +
+        '<th>タスク</th>' +
+        '<th>日時</th>' +
+        '<th class="cnt">スコア</th>' +
+        '<th class="num">正答率</th>' +
+      '</tr></thead><tbody>';
+
+    // Newest first
+    var rows = [];
+    taskKeys.forEach(function(tk){ rows = rows.concat(dayBucket[tk]); });
+    rows.sort(function(a,b){ return (b.timestamp || '').localeCompare(a.timestamp || ''); });
+
+    rows.forEach(function(r){
+      var pct = r.parsed.pct;
+      var pctText = pct === null ? '—' : pct + '%';
+      html += '<tr>' +
+        '<td><span class="task-pill">' + r.taskLabel + '</span></td>' +
+        '<td style="color:#8898a8;font-size:.92em">' + fmtDate(r.timestamp) + '</td>' +
+        '<td class="cnt"><span class="score-pill ' + gradeClass(pct) + '">' + r.parsed.label + '</span></td>' +
+        '<td class="num" style="color:' + (pct === null ? '#a0aec0' : '#2d3748') + ';font-weight:700">' + pctText + '</td>' +
+      '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+  });
+
+  // Day 0 (unclassified) at the end if any
+  if (byDay[0] && Object.keys(byDay[0]).length) {
+    html += '<div class="section"><div class="section-head"><div class="section-icon">📋</div><div class="section-info"><div class="section-label">その他</div><div class="section-title">分類できない履歴</div></div></div>';
+    Object.keys(byDay[0]).forEach(function(taskLabel){
+      byDay[0][taskLabel].forEach(function(r){
+        html += '<div style="padding:10px 0;font-size:.86em">' + taskLabel + ' — ' + r.parsed.label + ' (' + fmtDate(r.timestamp) + ')</div>';
+      });
+    });
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+function renderError(msg) {
+  document.getElementById('container').innerHTML =
+    '<div class="error-banner"><strong>取得エラー：</strong> ' + msg +
+    '<br><span style="font-size:.92em;opacity:.85">GAS 側に listMyAttempts エンドポイントが追加されていない可能性があります。設定を確認してください。</span></div>' +
+    '<div class="section"><div class="empty"><div class="emoji">⚙️</div><div>履歴を表示できません。</div></div></div>';
+}
+
+Api.listMyAttempts().then(function(r){
+  if (!r) return renderError('応答なし');
+  if (!r.success) return renderError(r.error || 'unknown');
+  render(r.attempts || []);
+}).catch(function(err){
+  renderError(String(err && err.message || err));
+});
+</script>
+</body>
+</html>

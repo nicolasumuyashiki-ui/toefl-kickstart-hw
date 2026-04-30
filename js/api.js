@@ -23,6 +23,16 @@ var Api = {
       .then(function(r) { return r.json(); });
   },
 
+  /* List all attempts saved by the current user. Returns raw rows so the
+     UI can group / sort them however it wants. Uses GET so the GAS 302
+     redirect is followed correctly (avoids the cross-origin POST issue). */
+  listMyAttempts: function() {
+    var u = JSON.parse(sessionStorage.getItem('kickstart_user') || '{}');
+    if (!u.userId) return Promise.resolve({ success: false, error: 'not_logged_in' });
+    var url = API_URL + '?action=listMyAttempts&id=' + encodeURIComponent(u.userId);
+    return fetch(url).then(function(r){ return r.json(); });
+  },
+
   saveAnswers: function(setName, answers, score) {
     var user = JSON.parse(sessionStorage.getItem('kickstart_user') || '{}');
     return fetch(API_URL, {
