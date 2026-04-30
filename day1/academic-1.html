@@ -318,7 +318,7 @@ function bindSquareClicks(){
       var existing = sessionStorage.getItem('kickstart_academic_answers');
       var all = existing ? JSON.parse(existing) : {};
       all['20'] = selectedInsertionPoint;
-      sessionStorage.setItem('kickstart_academic_answers', JSON.stringify(all));
+      sessionStorage.setItem('kickstart_academic_answers', JSON.stringify(all)); if(window.Review){Review.markDone("academic",1);Review.saveAttempt("academic",1,all);} 
     });
   });
 }
@@ -462,9 +462,11 @@ updateProgress();
 
 if(typeof Auth !== 'undefined'){
   Auth.require();
+  if(window.Review){Review.attachReviewControls({task:'academic',set:1,answersUrl:'academic-answers.html'});}
   Auth.showBadge('userBadge');
 }
 </script>
 <script src="../js/auth.js"></script>
+<script src="../js/review-mode.js"></script>
 </body>
 </html>

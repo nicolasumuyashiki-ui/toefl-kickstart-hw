@@ -238,9 +238,10 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
 </div>
 
 <script src="../js/auth.js"></script>
+<script src="../js/review-mode.js"></script>
 <script>
 /* ===== AUTH ===== */
-if(typeof Auth!=='undefined'){Auth.require();Auth.showBadge('userBadge');}
+if(typeof Auth!=='undefined'){Auth.require();Auth.showBadge('userBadge');} if(window.Review){Review.attachReviewControls({task:'email',set:1,answersUrl:'email-answers.html'});}
 
 /* ===== STATE ===== */
 let timerInterval = null;
@@ -275,7 +276,7 @@ function startTimer(){
     }
     if(secondsLeft <= 0){
       clearInterval(timerInterval);
-      finishWriting('timeout');
+      if(!window.Review || Review.shouldCutOff('email',1)) finishWriting('timeout');
     }
   },1000);
 }
@@ -399,7 +400,7 @@ function finishWriting(method){
   document.getElementById('previewText').textContent = text || '(No response written)';
 
   // Save to sessionStorage for answers page
-  sessionStorage.setItem('emailResponse', JSON.stringify({text:text, words:wordCount, time:m+':'+String(s).padStart(2,'0')}));
+  sessionStorage.setItem('emailResponse', JSON.stringify({text:text, words:wordCount, time:m+':'+String(s).padStart(2,'0')})); if(window.Review){Review.markDone("email",1);Review.saveAttempt("email",1,{text:text, words:wordCount, time:m+':'+String(s);} 
 
   // Show completion
   document.getElementById('writingPage').style.display='none';

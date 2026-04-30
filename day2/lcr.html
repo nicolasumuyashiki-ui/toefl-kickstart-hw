@@ -129,8 +129,9 @@ Next <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18
 </div>
 
 <script src="../js/auth.js"></script>
+<script src="../js/review-mode.js"></script>
 <script>
-if(typeof Auth!=='undefined'){Auth.require();Auth.showBadge('userBadge');}
+if(typeof Auth!=='undefined'){Auth.require();Auth.showBadge('userBadge');} if(window.Review){Review.attachReviewControls({task:'lcr',set:1,answersUrl:'lcr-answers.html'});}
 
 /* ===== SPEAKER IMAGES (Base64) ===== */
 const speakerImages = {
@@ -398,7 +399,7 @@ function goNext(){
         correct: q.answer,
         isCorrect: userAns === q.answer
     };
-    sessionStorage.setItem('lcrAnswers', JSON.stringify(stored));
+    sessionStorage.setItem('lcrAnswers', JSON.stringify(stored)); if(window.Review){Review.markDone("lcr",1);Review.saveAttempt("lcr",1,stored);} 
 
     if(currentQ < questions.length - 1){
         loadQuestion(currentQ + 1);

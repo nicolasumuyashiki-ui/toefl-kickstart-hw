@@ -84,6 +84,7 @@
 <div class="scoring-reminder"><div class="icon">⚠️</div><div class="text"><h3>スコアリングのルール — 推測しないと損！</h3><p>Complete the Words では、<strong>正解 → 得点</strong>、<strong>不正解 → 0点</strong>、<strong>空欄 → 0点</strong> です。不正解でも空欄でも結果は同じ0点。<strong>わからなくても必ず何か入力しましょう</strong>。</p></div></div>
 
 <script src="../js/auth.js"></script>
+<script src="../js/review-mode.js"></script>
 <script>
 var SD=[
 {intro:"Public libraries have played an important role in education for centuries. In the past, books were expensive, and only wealthy families could afford to collect them. Over time, leaders recognized that sharing knowledge with everyone would benefit society.",conclusion:"These efforts transformed how ordinary citizens gained access to information and education.",target:[{w:"Several",a:"ral",s:"Seve",p:""},{w:"countries",a:null,s:null,p:""},{w:"gradually",a:"lly",s:"gradua",p:""},{w:"established",a:null,s:null,p:""},{w:"free",a:"ee",s:"fr",p:""},{w:"reading",a:null,s:null,p:""},{w:"rooms",a:"oms",s:"ro",p:""},{w:"where",a:null,s:null,p:""},{w:"ordinary",a:"ary",s:"ordin",p:""},{w:"citizens",a:null,s:null,p:""},{w:"could",a:"ld",s:"cou",p:""},{w:"access",a:null,s:null,p:""},{w:"information",a:"tion",s:"informa",p:""},{w:"and",a:null,s:null,p:""},{w:"expand",a:"pand",s:"ex",p:""},{w:"their",a:null,s:null,p:""},{w:"knowledge",a:"dge",s:"knowle",p:""},{w:"of",a:null,s:null,p:""},{w:"the",a:"he",s:"t",p:""},{w:"world",a:null,s:null,p:"."}],exp:[{pos:"数量詞",d:"MOD",e:"「空欄＋名詞(countries)」→形容詞。\"Seve\"→Several。"},{pos:"副詞",d:"MOD",e:"「空欄＋動詞(established)」→副詞。\"gradua\"→gradually（徐々に）。"},{pos:"形容詞",d:"MOD",e:"「空欄＋名詞(reading rooms)」→形容詞。\"fr\"→free。"},{pos:"名詞",d:"HARD",e:"「free reading＋空欄」→名詞。\"ro\"のみでHARD→rooms。"},{pos:"形容詞",d:"MOD",e:"「空欄＋名詞(citizens)」→形容詞。\"ordin\"→ordinary（一般の）。"},{pos:"助動詞",d:"MOD",e:"「主語＋空欄＋access」→助動詞。\"cou\"→could。"},{pos:"名詞",d:"MOD",e:"「access＋空欄」→名詞。\"informa\"→information。"},{pos:"動詞",d:"HARD",e:"「and＋空欄＋their knowledge」→動詞。\"ex\"のみ→expand。文脈推測が重要！"},{pos:"名詞",d:"MOD",e:"「expand their＋空欄」→名詞。\"knowle\"→knowledge。"},{pos:"冠詞",d:"HARD",e:"「空欄＋名詞(world)」→冠詞。\"t\"1文字→the。品詞パターンで即答。"}]},
@@ -95,7 +96,7 @@ function renderAll(){
   var ts=0,tq=0,sh='';
   SD.forEach(function(s,si){
     var bl=s.target.filter(function(t){return t.a!==null;});
-    var st=null;try{st=JSON.parse(sessionStorage.getItem('ctw_answers_'+(si+1)));}catch(e){}
+    var st=null;try{st=JSON.parse(sessionStorage.getItem('ctw_answers_'+(si+1)));}catch(e){}if(!st&&window.Review){st=Review.loadAttempt('ctw',si+1);}
     var ua=st?st.answers:[];var sc=st?st.score:0;ts+=sc;tq+=bl.length;
     sh+='<div class="score-card"><h3>Set '+(si+1)+'</h3><div class="score-num"><span class="correct">'+sc+'</span>/'+bl.length+'</div><div class="score-detail">'+(st?Math.round(sc/bl.length*100)+'%':'—')+'</div></div>';
     var ph='<span>'+s.intro+'</span> ';

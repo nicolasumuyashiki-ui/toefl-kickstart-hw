@@ -196,7 +196,7 @@ const labels = ['A','B','C','D'];
 const correctAnswers = [1, 0, 3, 2]; // B, A, D, C
 
 function render(){
-  const stored = JSON.parse(sessionStorage.getItem('academicAnswers')||'null');
+  const stored = (JSON.parse(sessionStorage.getItem('academicAnswers')||'null')||(window.Review?Review.loadAttempt('listening-ac',1):null));
   let correct = 0, answered = 0;
   if(stored && Array.isArray(stored)){
     for(let i=0;i<4;i++){

@@ -93,7 +93,7 @@ const answers=[
 {id:14,prompt:"How did you learn to cook so well?",sentence:"My grandmother taught me her recipes when I was young.",grammar:"SVOO: taught me her recipes。時の副詞節: when I was young。"}
 ];
 
-const stored=JSON.parse(sessionStorage.getItem('sentenceAnswers')||'null');
+const stored=(JSON.parse(sessionStorage.getItem('sentenceAnswers')||'null')||(window.Review?Review.loadAttempt('sentence',1):null));
 let score=0;
 
 if(stored){

@@ -227,7 +227,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f9fafb;
 <script>
 var correctAnswers = {'11':'B','12':'C','13':'B','14':'B','15':'B'};
 (function(){
-  var saved = sessionStorage.getItem('kickstart_rdl_answers');
+  var saved = sessionStorage.getItem('kickstart_rdl_answers');if(!saved&&window.Review){var a1=Review.loadAttempt('rdl',1),a2=Review.loadAttempt('rdl',2);if(a1||a2){saved=JSON.stringify(Object.assign({},a1||{},a2||{}));}}
   var answers = saved ? JSON.parse(saved) : {};
   var score = 0;
   for(var q in correctAnswers){
@@ -250,5 +250,6 @@ var correctAnswers = {'11':'B','12':'C','13':'B','14':'B','15':'B'};
 })();
 </script>
 <script src="../js/auth.js"></script>
+<script src="../js/review-mode.js"></script>
 </body>
 </html>

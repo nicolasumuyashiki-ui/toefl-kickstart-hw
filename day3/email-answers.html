@@ -157,7 +157,7 @@ Best regards
 </div>
 
 <script>
-const stored = JSON.parse(sessionStorage.getItem('emailResponse')||'null');
+const stored = (JSON.parse(sessionStorage.getItem('emailResponse')||'null')||(window.Review?Review.loadAttempt('email',1):null));
 if(stored && stored.text){
   document.getElementById('userPreview').textContent = stored.text;
   document.getElementById('userStats').textContent = '語数: ' + stored.words + ' | 使用時間: ' + stored.time;

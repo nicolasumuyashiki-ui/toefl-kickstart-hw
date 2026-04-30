@@ -212,7 +212,7 @@ const labels = ['A','B','C','D'];
 const correctAnswers = [0, 1, 2, 3];
 
 function render(){
-  const stored = JSON.parse(sessionStorage.getItem('announceAnswers')||'null');
+  const stored = (JSON.parse(sessionStorage.getItem('announceAnswers')||'null')||(window.Review?Review.loadAttempt('announce',1):null));
   let correct = 0, answered = 0;
 
   if(stored && Array.isArray(stored)){

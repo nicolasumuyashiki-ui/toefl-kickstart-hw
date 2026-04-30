@@ -173,7 +173,7 @@ So overall, I think smart urban planning can meet housing demands without sacrif
 </div>
 
 <script>
-const stored = JSON.parse(sessionStorage.getItem('discussionResponse')||'null');
+const stored = (JSON.parse(sessionStorage.getItem('discussionResponse')||'null')||(window.Review?Review.loadAttempt('discussion',1):null));
 if(stored && stored.text){
   document.getElementById('userPreview').textContent = stored.text;
   document.getElementById('userStats').textContent = '語数: ' + stored.words + ' | 使用時間: ' + stored.time;

@@ -207,7 +207,7 @@ const QS = [
 const labels = ['A','B','C','D'];
 
 function render(){
-  const stored = JSON.parse(sessionStorage.getItem('lcrAnswers')||'{}');
+  const stored = (JSON.parse(sessionStorage.getItem('lcrAnswers')||'null')||(window.Review?Review.loadAttempt('lcr',1):null));
   let correct = 0, answered = 0;
   for(let i=1;i<=8;i++){
     if(stored['q'+i]){
@@ -270,5 +270,6 @@ render();
 if(typeof Auth !== 'undefined'){ Auth.require(); }
 </script>
 <script src="../js/auth.js"></script>
+<script src="../js/review-mode.js"></script>
 </body>
 </html>
