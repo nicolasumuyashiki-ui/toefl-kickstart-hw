@@ -145,6 +145,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
 </div>
 </div>
 
+<script src="../js/api.js"></script>
 <script src="../js/auth.js"></script>
 <script src="../js/review-mode.js"></script>
 <script>
@@ -316,7 +317,9 @@ function finishQuiz(){
   document.getElementById('resultsList').innerHTML=html;
 
   // Save to sessionStorage
-  sessionStorage.setItem('sentenceAnswers',JSON.stringify({answers:userAnswers,score:correct,total:questions.length})); if(window.Review){Review.markDone("sentence",1);Review.saveAttempt("sentence",1,{answers:userAnswers,score:correct,total:questions.length});} 
+  sessionStorage.setItem('sentenceAnswers',JSON.stringify({answers:userAnswers,score:correct,total:questions.length}));
+  if(window.Review){Review.markDone("sentence",1);Review.saveAttempt("sentence",1,{answers:userAnswers,score:correct,total:questions.length});}
+  if(typeof Api!=='undefined'&&Api.saveAnswers){try{Api.saveAnswers('Build a Sentence Set 1',userAnswers,correct+'/'+questions.length);}catch(e){}}
 
   document.getElementById('quizPage').style.display='none';
   document.getElementById('completionPage').style.display='flex';

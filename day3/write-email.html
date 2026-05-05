@@ -237,6 +237,7 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;
   </div>
 </div>
 
+<script src="../js/api.js"></script>
 <script src="../js/auth.js"></script>
 <script src="../js/review-mode.js"></script>
 <script>
@@ -400,7 +401,9 @@ function finishWriting(method){
   document.getElementById('previewText').textContent = text || '(No response written)';
 
   // Save to sessionStorage for answers page
-  sessionStorage.setItem('emailResponse', JSON.stringify({text:text, words:wordCount, time:m+':'+String(s).padStart(2,'0')})); if(window.Review){Review.markDone("email",1);Review.saveAttempt("email",1,{text:text, words:wordCount, time:m+':'+String(s);} 
+  sessionStorage.setItem('emailResponse', JSON.stringify({text:text, words:wordCount, time:m+':'+String(s).padStart(2,'0')}));
+  if(window.Review){Review.markDone("email",1);Review.saveAttempt("email",1,{text:text, words:wordCount, time:m+':'+String(s).padStart(2,'0')});}
+  if(typeof Api!=='undefined'&&Api.saveAnswers){try{Api.saveAnswers('Write Email Set 1',[text],wordCount+' words');}catch(e){}}
 
   // Show completion
   document.getElementById('writingPage').style.display='none';
